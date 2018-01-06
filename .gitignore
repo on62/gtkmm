@@ -1,2 +1,6 @@
-base
+*swp
+nbproject
+
+base/base
+helloworld/helloworld
 
