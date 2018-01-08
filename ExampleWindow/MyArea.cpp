@@ -27,6 +27,7 @@ bool MyArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     for(int i = 0; i < width; i += 2) {
         cr->move_to(i + m_fix, 0);
         cr->line_to(i + m_fix, height);
+        // cr->line_to(width/2, height);
     }
 
     cr->stroke();

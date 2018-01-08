@@ -13,6 +13,9 @@ ExampleWindow::ExampleWindow()
 
     m_Container.set_orientation(Gtk::ORIENTATION_HORIZONTAL);
 
+
+    m_Area_Lines.set_size_request(600, 600);
+
     m_Container.add(m_Area_Lines);
     m_Container.add(m_Button_FixLines);
 
