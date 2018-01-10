@@ -1,4 +1,6 @@
 *swp
-nbproject
+nbproject/
+.dep.inc
 build/
+dist/
 
