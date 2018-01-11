@@ -14,10 +14,18 @@ namespace My_gtk3 {
         set_size_request(800, 600);
     }
 
-    MyArea::~MyArea() { }
+    MyArea::~MyArea() {
+        std::cout << unnamed_shapes.size() << " unnamed shapes to destroy\n";
+        for(int i = 0; i < unnamed_shapes.size(); ++i)
+            delete unnamed_shapes[i];
+    }
 
     void MyArea::add_shape(Shape& sh) {
         shapes.push_back(&sh);
+    }
+
+    void MyArea::add_unnamed_shape(Shape* sh) {
+        unnamed_shapes.push_back(sh);
     }
 
     void MyArea::put_on_top(Shape& sh) {
@@ -38,6 +46,10 @@ namespace My_gtk3 {
         }
     }
 
+    std::vector<Shape*>& MyArea::unnamed() {
+        return unnamed_shapes;
+    }
+
     bool MyArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
         Gtk::Allocation allocation = get_allocation();
         const double width = (double)allocation.get_width();
@@ -49,6 +61,10 @@ namespace My_gtk3 {
             sh -> draw(cr, width, height);
         }
 
+        std::cout << unnamed_shapes.size() << " unnamed shapes to draw\n";
+        for(Shape* sh : unnamed_shapes) {
+            sh -> draw(cr, width, height);
+        }
         return true;
     }
 
