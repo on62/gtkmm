@@ -27,7 +27,7 @@ namespace My_gtk3 {
 
     public:
         virtual void draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const = 0;
-        // Shape(const Shape&) = delete;               // prevent copying
+        Shape(const Shape&) = delete;                       // prevent copying
         Shape& operator=(const Shape&) = delete;
         virtual ~Shape() { }
         void set_color(double rr, double gg, double bb);    // change color

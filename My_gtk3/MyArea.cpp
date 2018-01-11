@@ -16,8 +16,26 @@ namespace My_gtk3 {
 
     MyArea::~MyArea() { }
 
-    void MyArea::add_shape(Shape* sh) {
-        shapes.push_back(sh);
+    void MyArea::add_shape(Shape& sh) {
+        shapes.push_back(&sh);
+    }
+
+    void MyArea::put_on_top(Shape& sh) {
+        for(int i = 0; i < shapes.size(); ++i) {
+            if(shapes[i] == &sh) {
+                shapes.erase(shapes.begin()+i);
+                shapes.push_back(&sh);
+            }
+        }
+    }
+
+    void MyArea::move_to_bottom(Shape& sh) {
+        for(int i = 0; i < shapes.size(); ++i) {
+            if(shapes[i] == &sh) {
+                shapes.erase(shapes.begin()+i);
+                shapes.insert(shapes.begin(), &sh);
+            }
+        }
     }
 
     bool MyArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {

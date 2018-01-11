@@ -27,7 +27,9 @@ namespace My_gtk3 {
     public:
         MyArea();
         virtual ~MyArea();
-        void add_shape(Shape* sh);
+        void add_shape(Shape& sh);
+        void put_on_top(Shape& sh);
+        void move_to_bottom(Shape& sh);
     protected:
         bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override; //Override default signal handler:
     private:
