@@ -20,6 +20,7 @@
 #include "Grid.hpp"
 #include "Open_polyline.hpp"
 #include "Closed_polyline.hpp"
+#include "Rectangle.hpp"
 
 
 using namespace My_gtk3;
@@ -55,7 +56,32 @@ int main(int argc, char** argv) {
    cpl1.set_color(0.8, 0.5, 0.1);
    area.add_shape(&cpl1);
 
+   Rectangle rc00{Point{150.0, 100.0}, 200.0, 100.0};
+   Rectangle rc11{Point{50.0, 50.0}, Point{250.0, 150.0}};
+   Rectangle rc12{Point{50.0, 150.0}, Point{250.0, 250.0}};
+   Rectangle rc21{Point{250.0, 50.0}, 200.0, 100.0};
+   Rectangle rc22{Point{250.0, 150.0}, 200.0, 100.0};
 
+   rc00.set_color(0.9, 0.9, 0.0);   // yellow
+   rc11.set_color(0.0, 0.0, 1.0);   // blue
+   rc12.set_color(1.0, 0.0, 0.0);   //red
+   rc21.set_color(0.0, 1.0, 0.0);   // green
+   rc22.set_color(0.0, 0.0, 0.0);
+
+   rc00.fill(true);
+   rc11.fill(true);
+   rc12.fill(true);
+   rc21.fill(true);
+   rc22.fill(false);
+
+   area.add_shape(&rc00);
+   area.add_shape(&rc11);
+   area.add_shape(&rc12);
+   area.add_shape(&rc21);
+   area.add_shape(&rc22);
+
+   rc11.move(400.0, 0.0);
+   rc11.set_color(1.0, 1.0, 1.0);
 
    win.add(area);
    area.show();
