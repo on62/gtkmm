@@ -38,5 +38,4 @@ namespace My_gtk3 {
         Shape::add(p2);
     }
 
-
 } // namespace My_gtk3

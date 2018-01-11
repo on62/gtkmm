@@ -23,12 +23,9 @@
 namespace My_gtk3 {
 
     class Closed_polyline : public Open_polyline {
-
     public:
         using Open_polyline::Open_polyline;         // use Open_polyline's constructors
-
         void draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const override;
-
     };
 
 } // namespace My_gtk3

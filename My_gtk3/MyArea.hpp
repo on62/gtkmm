@@ -24,19 +24,14 @@
 namespace My_gtk3 {
 
     class MyArea : public Gtk::DrawingArea {
-
     public:
         MyArea();
         virtual ~MyArea();
-
         void add_shape(Shape* sh);
-
     protected:
         bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override; //Override default signal handler:
-
     private:
         std::vector<Shape*> shapes;
-
     };
 
 } // namespace My_gtk3

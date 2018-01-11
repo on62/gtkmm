@@ -19,6 +19,14 @@ namespace My_gtk3 {
         points.push_back(p);
     }
 
+    void Shape::move(double xx, double yy) {
+        std::cout << "moving\n";
+        for(Point& p : points) {
+            p.x += xx;
+            p.y += yy;
+        }
+    }
+
     void Shape::set_point(int i, Point p) {
         if(i < 0 || (int)points.size() < i + 1)
             throw std::out_of_range("Point index is out of range");

@@ -23,11 +23,9 @@
 namespace My_gtk3 {
 
     class Lines : public Shape {
-
     public:
         Lines();
         Lines(std::initializer_list<std::pair<Point, Point>> lst);  // initialize from a list of points
-
         void draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const override;
         void add(Point p1, Point p2);                               // add a line
     };
