@@ -16,6 +16,8 @@
 #include <gtkmm/window.h>
 #include "MyArea.hpp"
 #include "Lines.hpp"
+#include "Grid.hpp"
+
 
 using namespace My_gtk3;
 
@@ -37,6 +39,9 @@ int main(int argc, char** argv) {
    l1.add(Point{10,20}, Point{400, 450});
    l1.add(Point{500,20}, Point{40, 450});
    area.add_shape(&l1);
+
+   Grid g1(4, 3);
+   area.add_shape(&g1);
 
    win.add(area);
    area.show();

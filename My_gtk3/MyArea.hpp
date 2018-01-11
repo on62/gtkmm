@@ -17,7 +17,8 @@
 
 #include <vector>
 #include <gtkmm/drawingarea.h>
-#include "Lines.hpp"
+#include <cairomm/context.h>
+#include "Shape.hpp"
 
 
 namespace My_gtk3 {

@@ -5,33 +5,39 @@
  */
 
 /*
- * File:   Lines.hpp
+ * File:   Grid.hpp
  * Author: Ronen Gilead-Raz <ronengi@gmail.com>
  *
- * Created on January 10, 2018, 12:47 PM
+ * Created on January 11, 2018, 1:09 AM
  */
 
-#ifndef LINES_HPP
-#define LINES_HPP
+#ifndef GRID_HPP
+#define GRID_HPP
 
-#include <initializer_list>
-#include <algorithm>
 #include <gtkmm/drawingarea.h>
 #include "Shape.hpp"
 
 
 namespace My_gtk3 {
 
-    class Lines : public Shape {
+    class Grid : public Shape {
 
     public:
-        Lines();
-        Lines(std::initializer_list<std::pair<Point, Point>> lst);  // initialize from a list of points
+        Grid();
+        Grid(int ncols, int nrows);     // initialize columns and rows
 
         void draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const override;
-        void add(Point p1, Point p2);                               // add a line
+
+        void set_cols(int new_cols);    // how many columns
+        void set_rows(int new_rows);    // how many rows
+
+    private:
+        bool is_valid();
+
+        int cols;
+        int rows;
     };
 
 } // namespace My_gtk3
 
-#endif /* LINES_HPP */
+#endif /* GRID_HPP */

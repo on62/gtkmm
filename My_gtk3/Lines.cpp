@@ -16,11 +16,12 @@ namespace My_gtk3 {
     }
 
     Lines::Lines(std::initializer_list<std::pair<Point, Point>> lst) {  // initialize from a list of points
-        //add(lst[0], lst[1]);
+        for(auto p : lst)
+            add(p.first, p.second);
         default_color();
     }
 
-    void Lines::draw(const Cairo::RefPtr<Cairo::Context>& cr) const {
+    void Lines::draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const {
         cr->set_line_width(1.0);
         cr->set_source_rgb(color().r, color().g, color().b);
         for (int i = 1; i < number_of_points(); i += 2) {

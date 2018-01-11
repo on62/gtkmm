@@ -21,7 +21,7 @@ namespace My_gtk3 {
     class Line : public Shape {
     public:
         Line(Point p1, Point p2);
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr) const override;
+        void draw(const Cairo::RefPtr<Cairo::Context>& cr,double width, double height) const override;
     };
 
 } // namespace My_gtk3

@@ -14,7 +14,7 @@ namespace My_gtk3 {
         default_color();
     }
 
-    void Line::draw(const Cairo::RefPtr<Cairo::Context>& cr) const {
+    void Line::draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const {
     }
 
 } // namespace My_gtk3
