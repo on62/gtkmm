@@ -22,8 +22,10 @@ namespace My_gtk3 {
     }
 
     void Lines::draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const {
+
         cr->set_line_width(1.0);
         cr->set_source_rgb(color().r, color().g, color().b);
+
         for (int i = 1; i < number_of_points(); i += 2) {
             cr->move_to(point(i-1).x, point(i-1).y);
             cr->line_to(point(i).x, point(i).y);

@@ -12,6 +12,7 @@ namespace My_gtk3 {
     Shape::Shape(std::initializer_list<Point> lst) {
         for(Point p : lst)
             add(p);
+        default_color();
     }
 
     void Shape::add(Point p) {

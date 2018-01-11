@@ -15,8 +15,10 @@
 #include <gtkmm/application.h>
 #include <gtkmm/window.h>
 #include "MyArea.hpp"
+#include "Shape.hpp"
 #include "Lines.hpp"
 #include "Grid.hpp"
+#include "Open_polyline.hpp"
 
 
 using namespace My_gtk3;
@@ -41,7 +43,13 @@ int main(int argc, char** argv) {
    area.add_shape(&l1);
 
    Grid g1(4, 3);
+   g1.set_color(0.0, 0.0, 0.8);
    area.add_shape(&g1);
+
+   Open_polyline opl1{{100, 100}, {150, 200}, {250, 250}, {300, 200}};
+   opl1.set_color(0.8, 0.0, 0.0);
+   area.add_shape(&opl1);
+
 
    win.add(area);
    area.show();

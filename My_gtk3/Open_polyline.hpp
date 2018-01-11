@@ -5,14 +5,15 @@
  */
 
 /*
- * File:   Grid.hpp
+ * File:   Open_polyline.hpp
  * Author: Ronen Gilead-Raz <ronengi@gmail.com>
  *
- * Created on January 11, 2018, 1:09 AM
+ * Created on January 11, 2018, 1:10 AM
  */
 
-#ifndef GRID_HPP
-#define GRID_HPP
+#ifndef OPEN_POLYLINE_HPP
+#define OPEN_POLYLINE_HPP
+
 
 #include <gtkmm/drawingarea.h>
 #include "Shape.hpp"
@@ -20,26 +21,20 @@
 
 namespace My_gtk3 {
 
-    class Grid : public Shape {
+    class Open_polyline : public Shape {
 
     public:
-        Grid();
-        Grid(int ncols, int nrows);     // initialize columns and rows
+        using Shape::Shape;         // use Shape's constructors
 
         using Shape::set_color;
 
+        void add(Point p);
         void draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const override;
 
-        void set_cols(int new_cols);    // how many columns
-        void set_rows(int new_rows);    // how many rows
-
-    private:
-        bool is_valid();
-
-        int cols;
-        int rows;
     };
 
 } // namespace My_gtk3
 
-#endif /* GRID_HPP */
+
+#endif /* OPEN_POLYLINE_HPP */
+
