@@ -19,6 +19,7 @@
 #include "Lines.hpp"
 #include "Grid.hpp"
 #include "Open_polyline.hpp"
+#include "Closed_polyline.hpp"
 
 
 using namespace My_gtk3;
@@ -49,6 +50,11 @@ int main(int argc, char** argv) {
    Open_polyline opl1{{100, 100}, {150, 200}, {250, 250}, {300, 200}};
    opl1.set_color(0.8, 0.0, 0.0);
    area.add_shape(&opl1);
+
+   Closed_polyline cpl1{{100, 150}, {150, 250}, {250, 300}, {300, 250}};
+   cpl1.set_color(0.8, 0.5, 0.1);
+   area.add_shape(&cpl1);
+
 
 
    win.add(area);
