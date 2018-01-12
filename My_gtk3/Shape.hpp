@@ -35,14 +35,16 @@ namespace My_gtk3 {
         void set_color(const Color_rgb& new_color);         // change color
         void default_color();
         Color_rgb color() const;                            // get color
+        void fill(bool ff);                                 // fill / un-fill
         void move(double x, double y);
-        Shape() { }
+        Shape();
         Shape(std::initializer_list<Point> lst);    // add() the Points to this
     protected:
         void add(Point p);                          // add p to points
         void set_point(int i, Point p);             // points[i] = p;
         Point point(int i) const;
         int number_of_points() const;
+        bool to_fill;                               // fill shape ?
     private:
         std::vector<Point> points;                  // not used by all shapes
         Color_rgb the_color;

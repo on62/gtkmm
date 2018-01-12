@@ -11,10 +11,12 @@
 namespace My_gtk3 {
 
     Rectangle::Rectangle(Point tl, double ww, double hh)
-        : w{ww}, h{hh}, f{false}
+        : w{ww}, h{hh}
     {
             is_valid();
             add(tl);
+            default_color();
+            to_fill = false;
     }
 
     Rectangle::Rectangle(Point tl, Point rb)
@@ -22,9 +24,12 @@ namespace My_gtk3 {
     {
             is_valid();
             add(tl);
+            default_color();
+            to_fill = false;
     }
 
     void Rectangle::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
+        cr->save();
         cr->set_line_width(1.0);
         cr->set_source_rgb(color().r, color().g, color().b);
         cr->move_to(point(0).x, point(0).y);
@@ -32,17 +37,13 @@ namespace My_gtk3 {
         cr->line_to(point(0).x+w, point(0).y+h);
         cr->line_to(point(0).x, point(0).y+h);
         cr->line_to(point(0).x, point(0).y);
-        if(f) {
+        if(to_fill) {
             cr->set_fill_rule(Cairo::FillRule::FILL_RULE_EVEN_ODD);
-            cr->fill();
+            cr->fill_preserve();
         }
         cr->stroke();
+        cr->restore();
     }
-
-    void Rectangle::fill(bool ff){
-        f = ff;
-    }
-
 
     bool Rectangle::is_valid() {
         if(h <= 0)

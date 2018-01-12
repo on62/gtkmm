@@ -5,35 +5,31 @@
  */
 
 /*
- * File:   Rectangle.hpp
+ * File:   Ellipse.hpp
  * Author: Ronen Gilead-Raz <ronengi@gmail.com>
  *
- * Created on January 11, 2018, 5:30 PM
+ * Created on January 12, 2018, 9:18 PM
  */
 
-#ifndef RECTANGLE_HPP
-#define RECTANGLE_HPP
+#ifndef ELLIPSE_HPP
+#define ELLIPSE_HPP
 
 
 #include <gtkmm/drawingarea.h>
-#include "Shape.hpp"
-
+#include "Circle.hpp"
 
 namespace My_gtk3 {
 
-    class Rectangle : public Shape {
+    class Ellipse : public Circle {
     public:
-        Rectangle(Point tl, double ww, double hh);
-        Rectangle(Point tl, Point rb);
-        using Shape::set_color;
+        Ellipse(double cx, double cy, double rw, double rh);
+        Ellipse(Point cc, double rw, double rh);
         void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     private:
-        bool is_valid();
-        double h;      // height
-        double w;      // width
+        double radius_w;
+        double radius_h;
     };
 
 } // namespace My_gtk3
 
-
-#endif /* RECTANGLE_HPP */
+#endif /* ELLIPSE_HPP */

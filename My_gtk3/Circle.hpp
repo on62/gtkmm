@@ -5,35 +5,31 @@
  */
 
 /*
- * File:   Rectangle.hpp
+ * File:   Circle.hpp
  * Author: Ronen Gilead-Raz <ronengi@gmail.com>
  *
- * Created on January 11, 2018, 5:30 PM
+ * Created on January 12, 2018, 6:57 PM
  */
 
-#ifndef RECTANGLE_HPP
-#define RECTANGLE_HPP
-
+#ifndef CIRCLE_HPP
+#define CIRCLE_HPP
 
 #include <gtkmm/drawingarea.h>
 #include "Shape.hpp"
 
-
 namespace My_gtk3 {
 
-    class Rectangle : public Shape {
+    class Circle : public Shape {
     public:
-        Rectangle(Point tl, double ww, double hh);
-        Rectangle(Point tl, Point rb);
+        Circle(double cx, double cy, double rr);
+        Circle(Point cc, double rr);
         using Shape::set_color;
         void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     private:
-        bool is_valid();
-        double h;      // height
-        double w;      // width
+        double radius;
     };
 
 } // namespace My_gtk3
 
+#endif /* CIRCLE_HPP */
 
-#endif /* RECTANGLE_HPP */

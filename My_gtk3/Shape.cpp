@@ -9,7 +9,16 @@
 
 namespace My_gtk3 {
 
-    Shape::Shape(std::initializer_list<Point> lst) {
+
+    Shape::Shape()
+        : to_fill{false}
+    {
+        default_color();
+    }
+
+    Shape::Shape(std::initializer_list<Point> lst)
+        : to_fill{false}
+    {
         for(Point p : lst)
             add(p);
         default_color();
@@ -63,6 +72,10 @@ namespace My_gtk3 {
 
     Color_rgb Shape::color() const {
         return the_color;
+    }
+
+    void Shape::fill(bool ff) {
+        to_fill = ff;
     }
 
 } // namespace My_gtk3

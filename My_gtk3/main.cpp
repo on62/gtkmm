@@ -22,6 +22,8 @@
 #include "Closed_polyline.hpp"
 #include "Rectangle.hpp"
 #include "Text.hpp"
+#include "Circle.hpp"
+#include "Ellipse.hpp"
 
 
 using namespace My_gtk3;
@@ -87,6 +89,16 @@ int main(int argc, char** argv) {
     area.put_on_top(rc00);
     area.move_to_bottom(rc21);
 
+    Circle circ1{Point{340,430}, 25};
+    circ1.set_color(0.1, 0.7, 0.2);
+    circ1.fill(true);
+    area.add_shape(circ1);
+
+    Ellipse el1{Point{400,330}, 50, 42};
+    el1.set_color(0.1, 0.6, 0.5);
+    el1.fill(true);
+    area.add_shape(el1);
+
     for(int i = 0; i < 40; ++i) {
         for(int j = 0; j < 40; ++j) {
             Rectangle* sh = new Rectangle{Point{i * 18.0, j * 14.0}, 18.0, 14.0};
@@ -97,8 +109,8 @@ int main(int argc, char** argv) {
     }
 
     Text t1{"Hello", Point{30,20}, "Source Code Pro", Pango::WEIGHT_NORMAL};
-    area.add_shape(t1);
     t1.set_color(0.9, 0.9, 0.0);   // yellow
+    area.add_shape(t1);
 
     t1.move(100.0, 50.0);
 
