@@ -24,6 +24,7 @@
 #include "Text.hpp"
 #include "Circle.hpp"
 #include "Ellipse.hpp"
+#include "Image.hpp"
 
 
 using namespace My_gtk3;
@@ -110,9 +111,12 @@ int main(int argc, char** argv) {
 
     Text t1{"Hello", Point{30,20}, "Source Code Pro", Pango::WEIGHT_NORMAL};
     t1.set_color(0.9, 0.9, 0.0);   // yellow
+    t1.move(100.0, 50.0);
     area.add_shape(t1);
 
-    t1.move(100.0, 50.0);
+    Image img1{"fract0.png", Point{400.0, 300.0}, 100.0};
+    area.add_shape(img1);
+
 
    win.add(area);
    area.show();
