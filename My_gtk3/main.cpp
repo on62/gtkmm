@@ -21,6 +21,7 @@
 #include "Open_polyline.hpp"
 #include "Closed_polyline.hpp"
 #include "Rectangle.hpp"
+#include "Text.hpp"
 
 
 using namespace My_gtk3;
@@ -96,6 +97,12 @@ int main(int argc, char** argv) {
             area.add_unnamed_shape(sh);
         }
     }
+
+    Text t1{"Hello", Point{30,20}, "Source Code Pro", Pango::WEIGHT_NORMAL};
+    area.add_shape(t1);
+    t1.set_color(0.9, 0.9, 0.0);   // yellow
+
+    t1.move(100.0, 50.0);
 
    win.add(area);
    area.show();
