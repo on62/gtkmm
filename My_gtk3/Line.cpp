@@ -14,7 +14,7 @@ namespace My_gtk3 {
         default_color();
     }
 
-    void Line::draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const {
+    void Line::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         cr->set_line_width(1.0);
         cr->set_source_rgb(color().r, color().g, color().b);
     }

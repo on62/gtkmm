@@ -24,7 +24,7 @@ namespace My_gtk3 {
             default_color();
     }
 
-    void Grid::draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const {
+    void Grid::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         double x_step = width / cols;
         double y_step = height / rows;
 

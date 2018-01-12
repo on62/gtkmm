@@ -56,15 +56,16 @@ namespace My_gtk3 {
         const double height = (double)allocation.get_height();
         // std::cout << "(" << width << ", " << height << ")\n";
 
-        std::cout << shapes.size() << " shapes to draw\n";
-        for(Shape* sh : shapes) {
-            sh -> draw(cr, width, height);
-        }
-
         std::cout << unnamed_shapes.size() << " unnamed shapes to draw\n";
         for(Shape* sh : unnamed_shapes) {
-            sh -> draw(cr, width, height);
+            sh -> draw(cr, *this, width, height);
         }
+
+        std::cout << shapes.size() << " shapes to draw\n";
+        for(Shape* sh : shapes) {
+            sh -> draw(cr, *this, width, height);
+        }
+
         return true;
     }
 

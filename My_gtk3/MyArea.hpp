@@ -30,6 +30,7 @@ namespace My_gtk3 {
         ~MyArea() noexcept override;
         void add_shape(Shape& sh);
         void add_unnamed_shape(Shape* sh);
+        void add_message(Shape& sh);
         void put_on_top(Shape& sh);
         void move_to_bottom(Shape& sh);
         std::vector<Shape*>& unnamed();

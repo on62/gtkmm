@@ -40,7 +40,6 @@ int main(int argc, char** argv) {
 
     MyArea area;
 
-    /*
     Lines l1;
     l1.add(Point{10,20}, Point{400, 450});
     l1.add(Point{500,20}, Point{40, 450});
@@ -87,7 +86,6 @@ int main(int argc, char** argv) {
 
     area.put_on_top(rc00);
     area.move_to_bottom(rc21);
-    */
 
     for(int i = 0; i < 40; ++i) {
         for(int j = 0; j < 40; ++j) {

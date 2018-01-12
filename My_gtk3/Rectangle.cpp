@@ -24,7 +24,7 @@ namespace My_gtk3 {
             add(tl);
     }
 
-    void Rectangle::draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const {
+    void Rectangle::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         cr->set_line_width(1.0);
         cr->set_source_rgb(color().r, color().g, color().b);
         cr->move_to(point(0).x, point(0).y);

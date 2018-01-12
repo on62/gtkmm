@@ -25,8 +25,7 @@ namespace My_gtk3 {
     public:
         using Shape::Shape;         // use Shape's constructors
         using Shape::set_color;
-        void add(Point p);
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr, double width, double height) const override;
+        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     };
 
 } // namespace My_gtk3
