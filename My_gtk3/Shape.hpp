@@ -37,9 +37,9 @@ namespace My_gtk3 {
         Color_rgb color() const;                            // get color
         void fill(bool ff);                                 // fill / un-fill
         void move(double x, double y);
+    protected:
         Shape();
         Shape(std::initializer_list<Point> lst);    // add() the Points to this
-    protected:
         void add(Point p);                          // add p to points
         void set_point(int i, Point p);             // points[i] = p;
         Point point(int i) const;

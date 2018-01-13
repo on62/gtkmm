@@ -11,10 +11,9 @@
 
 namespace My_gtk3 {
 
-    Lines::Lines() {
-        default_color();
-        to_fill = false;
-    }
+    Lines::Lines()
+        : Shape()
+    { }
 
     Lines::Lines(std::initializer_list<std::pair<Point, Point>> lst) {  // initialize from a list of points
         for(auto p : lst)

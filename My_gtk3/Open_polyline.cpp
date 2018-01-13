@@ -9,6 +9,10 @@
 
 namespace My_gtk3 {
 
+    Open_polyline::Open_polyline(std::initializer_list<Point> lst)
+        : Shape(lst)
+    { }
+
     void Open_polyline::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area,  double width, double height) const {
         cr->save();
         int np = number_of_points();
