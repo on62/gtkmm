@@ -9,6 +9,16 @@
 
 namespace My_gtk3 {
 
+    void Shape::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
+        cr->save();
+        cr->set_line_width(1.0);
+        cr->set_source_rgb(color().r, color().g, color().b);
+
+        // std::cout << width << height;
+        draw_specific(cr, area, width, height);
+
+        cr->restore();
+    }
 
     Shape::Shape()
         : to_fill{false}

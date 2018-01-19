@@ -28,7 +28,7 @@ namespace My_gtk3 {
         Text(std::string msg, Point tl);
         Text(std::string msg, Point tl, std::string ffamily, Pango::Weight fweight);
         using Shape::set_color;
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
+        void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     private:
         std::string message;
         std::string font_family;

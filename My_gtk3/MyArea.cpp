@@ -5,6 +5,8 @@
  */
 
 
+#include <cassert>
+
 #include "MyArea.hpp"
 
 
@@ -15,7 +17,7 @@ namespace My_gtk3 {
     }
 
     MyArea::~MyArea() {
-        std::cout << unnamed_shapes.size() << " unnamed shapes to destroy\n";
+        std::cout << "MyArea::~MyArea()\t\t\t" << unnamed_shapes.size() << " unnamed shapes to destroy\n";
         for(int i = 0; i < unnamed_shapes.size(); ++i)
             delete unnamed_shapes[i];
     }
@@ -25,6 +27,7 @@ namespace My_gtk3 {
     }
 
     void MyArea::add_unnamed_shape(Shape* sh) {
+        std::cout << "MyArea::add_unnamed_shape()\t\tadd unnamed shape " << unnamed_shapes.size() << "\n";
         unnamed_shapes.push_back(sh);
     }
 
@@ -46,22 +49,18 @@ namespace My_gtk3 {
         }
     }
 
-    std::vector<Shape*>& MyArea::unnamed() {
-        return unnamed_shapes;
-    }
-
     bool MyArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
         Gtk::Allocation allocation = get_allocation();
         const double width = (double)allocation.get_width();
         const double height = (double)allocation.get_height();
         // std::cout << "(" << width << ", " << height << ")\n";
 
-        std::cout << unnamed_shapes.size() << " unnamed shapes to draw\n";
+        std::cout << "MyArea::on_draw()\t\t\t" << unnamed_shapes.size() << " unnamed shapes to draw\n";
         for(Shape* sh : unnamed_shapes) {
             sh -> draw(cr, *this, width, height);
         }
 
-        std::cout << shapes.size() << " shapes to draw\n";
+        std::cout <<  "MyArea::on_draw()\t\t\t" << shapes.size() << " shapes to draw\n";
         for(Shape* sh : shapes) {
             sh -> draw(cr, *this, width, height);
         }

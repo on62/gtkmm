@@ -25,7 +25,7 @@ namespace My_gtk3 {
         Grid();
         Grid(int ncols, int nrows);     // initialize columns and rows
         using Shape::set_color;
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area,  double width, double height) const override;
+        void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area,  double width, double height) const override;
         void set_cols(int new_cols);    // how many columns
         void set_rows(int new_rows);    // how many rows
     private:

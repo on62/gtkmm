@@ -22,16 +22,12 @@ namespace My_gtk3 {
         to_fill = false;
     }
 
-    void Lines::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        cr->save();
-        cr->set_line_width(1.0);
-        cr->set_source_rgb(color().r, color().g, color().b);
+    void Lines::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         for (int i = 1; i < number_of_points(); i += 2) {
             cr->move_to(point(i-1).x, point(i-1).y);
             cr->line_to(point(i).x, point(i).y);
             cr->stroke();
         }
-        cr->restore();
     }
 
     void Lines::add(Point p1, Point p2) {                               // add a line

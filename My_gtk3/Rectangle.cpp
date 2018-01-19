@@ -28,10 +28,7 @@ namespace My_gtk3 {
             to_fill = false;
     }
 
-    void Rectangle::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        cr->save();
-        cr->set_line_width(1.0);
-        cr->set_source_rgb(color().r, color().g, color().b);
+    void Rectangle::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         cr->move_to(point(0).x, point(0).y);
         cr->line_to(point(0).x+w, point(0).y);
         cr->line_to(point(0).x+w, point(0).y+h);
@@ -42,7 +39,6 @@ namespace My_gtk3 {
             cr->fill_preserve();
         }
         cr->stroke();
-        cr->restore();
     }
 
     bool Rectangle::is_valid() {

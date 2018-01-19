@@ -24,7 +24,7 @@ namespace My_gtk3 {
     public:
         Ellipse(double cx, double cy, double rw, double rh);
         Ellipse(Point cc, double rw, double rh);
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
+        void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     private:
         double radius_w;
         double radius_h;

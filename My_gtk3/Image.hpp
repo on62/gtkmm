@@ -24,7 +24,7 @@ namespace My_gtk3 {
     public:
         Image(std::string img_path, Point tl, double rr);
         using Shape::set_color;
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
+        void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     private:
         Glib::RefPtr<Gdk::Pixbuf> image;
     };

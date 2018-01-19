@@ -15,11 +15,10 @@ namespace My_gtk3 {
         to_fill = false;
     }
 
-    void Line::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        cr->save();
-        cr->set_line_width(1.0);
-        cr->set_source_rgb(color().r, color().g, color().b);
-        cr->restore();
-    }
+    void Line::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
+        cr->move_to(point(0).x, point(0).y);
+        cr->line_to(point(1).x, point(1).y);
+        cr->stroke();
+ }
 
 } // namespace My_gtk3

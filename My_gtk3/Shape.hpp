@@ -27,24 +27,25 @@ namespace My_gtk3 {
     class Shape {
 
     public:
-        virtual void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const = 0;
-        Shape(const Shape&) = delete;                       // prevent copying
-        Shape& operator=(const Shape&) = delete;
-        virtual ~Shape() { }
+        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const;
+        virtual void move(double x, double y);
         void set_color(double rr, double gg, double bb);    // change color
         void set_color(const Color_rgb& new_color);         // change color
         void default_color();
         Color_rgb color() const;                            // get color
         void fill(bool ff);                                 // fill / un-fill
-        void move(double x, double y);
-    protected:
-        Shape();
-        Shape(std::initializer_list<Point> lst);    // add() the Points to this
-        void add(Point p);                          // add p to points
-        void set_point(int i, Point p);             // points[i] = p;
+        Shape(const Shape&) = delete;                       // prevent copying
+        Shape& operator=(const Shape&) = delete;
+        virtual ~Shape() {}
         Point point(int i) const;
         int number_of_points() const;
         bool to_fill;                               // fill shape ?
+    protected:
+        Shape();
+        Shape(std::initializer_list<Point> lst);    // add() the Points to this
+        virtual void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const =0;
+        void add(Point p);                          // add p to points
+        void set_point(int i, Point p);             // points[i] = p;
     private:
         std::vector<Point> points;                  // not used by all shapes
         Color_rgb the_color;

@@ -19,10 +19,7 @@ namespace My_gtk3 {
     { }
 
 
-    void Ellipse::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        cr->save();
-        cr->set_line_width(1.0);
-        cr->set_source_rgb(color().r, color().g, color().b);
+    void Ellipse::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         cr->scale(1.0, radius_h / radius_w);
         cr->arc(point(0).x, point(0).y, radius_w, 0.0, 2 * M_PI);
         if(to_fill) {
@@ -30,7 +27,6 @@ namespace My_gtk3 {
             cr->fill_preserve();
         }
         cr->stroke();
-        cr->restore();
     }
 
 } // namespace My_gtk3

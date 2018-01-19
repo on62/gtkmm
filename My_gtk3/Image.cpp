@@ -17,11 +17,9 @@ namespace My_gtk3 {
         default_color();
     }
 
-    void Image::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        cr->save();
+    void Image::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         Gdk::Cairo::set_source_pixbuf(cr, image, point(0).x, point(0).y);
         cr->paint_with_alpha(0.9);
-        cr->restore();
     }
 
 } // namespace My_gtk3

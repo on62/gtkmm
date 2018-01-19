@@ -44,19 +44,36 @@ int main(int argc, char** argv) {
     MyArea area;
 
     Lines l1;
-    l1.add(Point{10,20}, Point{400, 450});
-    l1.add(Point{500,20}, Point{40, 450});
+    l1.add(Point{10, 20}, Point{400, 450});
+    l1.add(Point{500, 20}, Point{40, 450});
+    l1.set_color(0.0, 0.7, 0.3);
     area.add_shape(l1);
 
     Grid g1(4, 3);
     g1.set_color(0.0, 0.0, 0.8);
     area.add_shape(g1);
 
-    Open_polyline opl1{{100, 100}, {150, 200}, {250, 250}, {300, 200}};
+    Text t1{"Hello", Point{30, 20}, "Source Code Pro", Pango::WEIGHT_NORMAL};
+    t1.set_color(0.9, 0.9, 0.0); // yellow
+    t1.move(100.0, 50.0);
+    area.add_shape(t1);
+
+    Image img1{"fract0.png", Point{400.0, 300.0}, 100.0};
+    area.add_shape(img1);
+
+    Open_polyline opl1{
+        {100, 100},
+        {150, 200},
+        {250, 250},
+        {300, 200}};
     opl1.set_color(0.8, 0.0, 0.0);
     area.add_shape(opl1);
 
-    Closed_polyline cpl1{{100, 150}, {150, 250}, {250, 300}, {300, 250}};
+    Closed_polyline cpl1{
+        {100, 150},
+        {150, 250},
+        {250, 300},
+        {300, 250}};
     cpl1.set_color(0.8, 0.5, 0.1);
     area.add_shape(cpl1);
 
@@ -66,11 +83,11 @@ int main(int argc, char** argv) {
     Rectangle rc21{Point{250.0, 50.0}, 200.0, 100.0};
     Rectangle rc22{Point{250.0, 150.0}, 200.0, 100.0};
 
-    rc00.set_color(0.9, 0.9, 0.0);   // yellow
-    rc11.set_color(0.0, 0.0, 1.0);   // blue
-    rc12.set_color(1.0, 0.0, 0.0);   //red
-    rc21.set_color(0.0, 1.0, 0.0);   // green
-    rc22.set_color(0.0, 0.0, 0.0);
+    rc00.set_color(0.9, 0.9, 0.0);      // yellow
+    rc11.set_color(0.0, 0.0, 1.0);      // blue
+    rc12.set_color(1.0, 0.0, 0.0);      // red
+    rc21.set_color(0.0, 1.0, 0.0);      // green
+    rc22.set_color(0.0, 0.0, 0.0);      // white
 
     rc00.fill(true);
     rc11.fill(true);
@@ -90,12 +107,12 @@ int main(int argc, char** argv) {
     area.put_on_top(rc00);
     area.move_to_bottom(rc21);
 
-    Circle circ1{Point{340,430}, 25};
+    Circle circ1{Point{340, 430}, 25};
     circ1.set_color(0.1, 0.7, 0.2);
     circ1.fill(true);
     area.add_shape(circ1);
 
-    Ellipse el1{Point{400,330}, 50, 42};
+    Ellipse el1{Point{400, 330}, 50, 42};
     el1.set_color(0.1, 0.6, 0.5);
     el1.fill(true);
     area.add_shape(el1);
@@ -109,17 +126,8 @@ int main(int argc, char** argv) {
         }
     }
 
-    Text t1{"Hello", Point{30,20}, "Source Code Pro", Pango::WEIGHT_NORMAL};
-    t1.set_color(0.9, 0.9, 0.0);   // yellow
-    t1.move(100.0, 50.0);
-    area.add_shape(t1);
+    win.add(area);
+    area.show();
 
-    Image img1{"fract0.png", Point{400.0, 300.0}, 100.0};
-    area.add_shape(img1);
-
-
-   win.add(area);
-   area.show();
-
-   return app->run(win);
+    return app->run(win);
 }

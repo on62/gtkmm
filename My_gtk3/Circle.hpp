@@ -23,7 +23,7 @@ namespace My_gtk3 {
     public:
         Circle(double cx, double cy, double rr);
         Circle(Point cc, double rr);
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
+        void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     private:
         double radius;
     };

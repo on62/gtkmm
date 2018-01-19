@@ -26,14 +26,12 @@ namespace My_gtk3 {
     class MyArea : public Gtk::DrawingArea {
     public:
         MyArea();
-        // virtual ~MyArea();
-        ~MyArea() noexcept override;
+        ~MyArea();
         void add_shape(Shape& sh);
         void add_unnamed_shape(Shape* sh);
         void add_message(Shape& sh);
         void put_on_top(Shape& sh);
         void move_to_bottom(Shape& sh);
-        std::vector<Shape*>& unnamed();
     protected:
         bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override; //Override default signal handler:
     private:

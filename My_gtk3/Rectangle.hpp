@@ -26,7 +26,7 @@ namespace My_gtk3 {
         Rectangle(Point tl, double ww, double hh);
         Rectangle(Point tl, Point rb);
         using Shape::set_color;
-        void draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
+        void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
     private:
         bool is_valid();
         double h;      // height

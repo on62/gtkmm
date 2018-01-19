@@ -26,12 +26,9 @@ namespace My_gtk3 {
             to_fill = false;
     }
 
-    void Grid::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        cr->save();
+    void Grid::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         double x_step = width / cols;
         double y_step = height / rows;
-        cr->set_line_width(1.0);
-        cr->set_source_rgb(color().r, color().g, color().b);
         for(double x = 0.0; x < width; x += x_step) {
             cr->move_to(x, 0.0);
             cr->line_to(x, height);
@@ -41,7 +38,6 @@ namespace My_gtk3 {
             cr->line_to(width, y);
         }
         cr->stroke();
-        cr->restore();
     }
 
     void Grid::set_cols(int new_cols) {

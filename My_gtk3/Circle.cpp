@@ -26,17 +26,13 @@ namespace My_gtk3 {
         default_color();
     }
 
-    void Circle::draw(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        cr->save();
-        cr->set_line_width(1.0);
-        cr->set_source_rgb(color().r, color().g, color().b);
+    void Circle::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
         cr->arc(point(0).x, point(0).y, radius, 0.0, 2 * M_PI);
         if(to_fill) {
             cr->set_fill_rule(Cairo::FillRule::FILL_RULE_EVEN_ODD);
             cr->fill_preserve();
         }
         cr->stroke();
-        cr->restore();
     }
 
 } // namespace My_gtk3
