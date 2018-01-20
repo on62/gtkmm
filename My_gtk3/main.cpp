@@ -14,6 +14,8 @@
 
 #include <gtkmm/application.h>
 #include <gtkmm/window.h>
+#include <cmath>
+#include <complex>
 #include "MyArea.hpp"
 #include "Shape.hpp"
 #include "Lines.hpp"
@@ -25,6 +27,7 @@
 #include "Circle.hpp"
 #include "Ellipse.hpp"
 #include "Image.hpp"
+#include "Function.hpp"
 
 
 using namespace My_gtk3;
@@ -125,6 +128,49 @@ int main(int argc, char** argv) {
             area.add_unnamed_shape(sh);
         }
     }
+
+    /*
+    Function f1{std::cos, -10, 10, Point{0.5, 0.5}};
+    f1.set_color(0.1, 0.5, 0.9);
+    area.add_shape(f1);
+
+    Function f2{one, -100, 100, Point{0.5, 0.7}};
+    f2.set_color(0.9, 0.5, 0.3);
+    area.add_shape(f2);
+
+    Function f3{slope, -20, 20, Point{0.5, 0.3}};
+    f3.set_color(0.1, 0.9, 0.9);
+    area.add_shape(f3);
+
+    Function f4{sloping_cos, -20, 20, Point{0.5, 0.3}};
+    f4.set_color(0.8, 0.9, 0.9);
+    area.add_shape(f4);
+
+    Function f5{square, -10, 10, Point{0.3, 0.3}};
+    f5.set_color(1.8, 0.2, 0.1);
+    area.add_shape(f5);
+
+    Function f6{std::sqrt, 0, 30, Point{0.2, 0.7}};
+    f6.set_color(0.1, 0.9, 0.2);
+    area.add_shape(f6);
+
+    Function f7{std::log, 0.000001, 30, Point{0.1, 0.8}};
+    f7.set_color(1, 0, 0);
+    area.add_shape(f7);
+
+    Function f8{std::exp, -10, 10, Point{0.2, 0.8}};
+    f8.set_color(1, 0, 0);
+    area.add_shape(f8);
+    */
+
+    Function f9{ [](double x) { return std::exp(x) + std::sin(x); }, -10, 10, Point{0.5, 0.8}};
+    f9.set_color(1, 0, 0);
+    area.add_shape(f9);
+
+
+    Function f10{ [](double x)->double { return slope(x) + std::sin(x); }, -20, 20, Point{0.5, 0.5}};
+    f10.set_color(0, 1, 0);
+    area.add_shape(f10);
 
     win.add(area);
     area.show();
