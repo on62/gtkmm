@@ -11,9 +11,7 @@
 
 namespace My_gtk3 {
 
-    Lines::Lines()
-        : Shape()
-    { }
+    Lines::Lines() { }
 
     Lines::Lines(std::initializer_list<std::pair<Point, Point>> lst) {  // initialize from a list of points
         for(auto p : lst)

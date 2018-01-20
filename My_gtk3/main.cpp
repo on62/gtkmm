@@ -28,6 +28,7 @@
 #include "Ellipse.hpp"
 #include "Image.hpp"
 #include "Function.hpp"
+#include "Axis.hpp"
 
 
 using namespace My_gtk3;
@@ -167,10 +168,14 @@ int main(int argc, char** argv) {
     f9.set_color(1, 0, 0);
     area.add_shape(f9);
 
-
     Function f10{ [](double x)->double { return slope(x) + std::sin(x); }, -20, 20, Point{0.5, 0.5}};
     f10.set_color(0, 1, 0);
     area.add_shape(f10);
+
+    Axis xx{Axis::x, Point{300, 10}, 410, 40, "x axis"};
+    xx.set_color(1, 1, 0.1);
+    area.add_shape(xx);
+
 
     win.add(area);
     area.show();
