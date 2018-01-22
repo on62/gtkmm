@@ -39,7 +39,7 @@ namespace My_gtk3 {
     }
 
     void Shape::move(double xx, double yy) {
-        std::cout << "moving\n";
+        // std::cout << "moving\n";
         for(Point& p : points) {
             p.x += xx;
             p.y += yy;

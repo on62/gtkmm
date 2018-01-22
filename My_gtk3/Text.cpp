@@ -35,19 +35,24 @@ namespace My_gtk3 {
     }
 
     void Text::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
-        Pango::FontDescription font;
-        font.set_family("Monospace");
-        font.set_weight(Pango::WEIGHT_BOLD);
-        auto layout = area.create_pango_layout(message);
-        layout->set_font_description(font);
-        /*
-        int text_width;
-        int text_height;
-        layout->get_pixel_size(text_width, text_height);    //get the text dimensions (updates variables by reference)
-        */
         cr->move_to(point(0).x, point(0).y);                // Position the text
+        Glib::RefPtr<Pango::Layout> layout = create_layout(area);
         layout->show_in_cairo_context(cr);
     }
 
+    void Text::get_text_pixel_size(Gtk::Widget& gtkw, int& text_width, int& text_height) const {
+            //get the text dimensions (updates variables by reference)
+            create_layout(gtkw)->get_pixel_size(text_width, text_height);
+            // std::cout << "\t(" << text_width << " ," << text_height << ")\n";
+    }
+
+    Glib::RefPtr<Pango::Layout> Text::create_layout(Gtk::Widget& gtkw) const {
+        Pango::FontDescription font;
+        font.set_family(font_family);
+        font.set_weight(font_weight);
+        Glib::RefPtr<Pango::Layout> layout = gtkw.create_pango_layout(message);
+        layout->set_font_description(font);
+        return layout;
+    }
 
 } // namespace My_gtk3

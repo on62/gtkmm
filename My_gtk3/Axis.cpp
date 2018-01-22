@@ -10,10 +10,12 @@
 
 namespace My_gtk3 {
 
-    Axis::Axis(Orientation d, Point xy, int length, int number_of_notches, std::string lbl)
-        : label{lbl, xy,  "Source Code Pro", Pango::WEIGHT_NORMAL}
+    Axis::Axis(Gtk::Widget& gtkw, Orientation d, Point xy, int len, int number_of_notches, std::string lbl)
+        : length{len}, label{lbl, xy,  "Source Code Pro", Pango::WEIGHT_NORMAL}
     {
         if(length < 0) throw std::runtime_error("bad axis length");
+        int label_height, label_width;
+        label.get_text_pixel_size(gtkw, label_width, label_height);
         switch(d) {
         case Axis::x:
         {
@@ -26,7 +28,8 @@ namespace My_gtk3 {
                     x += dist;
                 }
             }
-            label.move(length / 3, xy.y + 20);              // label under the line
+            // label under the line
+            label.move((double)(length - label_width), 0);
             break;
         }
         case Axis::y:
@@ -40,7 +43,8 @@ namespace My_gtk3 {
                     y -= dist;
                 }
             }
-            label.move(xy.x - 10, xy.y - length - 10);      // label at top
+            // label at top
+            label.move( (double)(0 - label_width - 5), (double)(0 - length));
             break;
         }
         case Axis::z:

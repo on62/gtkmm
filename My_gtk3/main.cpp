@@ -47,6 +47,7 @@ int main(int argc, char** argv) {
 
     MyArea area;
 
+    /*
     Lines l1;
     l1.add(Point{10, 20}, Point{400, 450});
     l1.add(Point{500, 20}, Point{40, 450});
@@ -57,10 +58,12 @@ int main(int argc, char** argv) {
     g1.set_color(0.0, 0.0, 0.8);
     area.add_shape(g1);
 
-    Text t1{"Hello", Point{30, 20}, "Source Code Pro", Pango::WEIGHT_NORMAL};
+    Text t1{"Hello World", Point{30, 20}, "Source Code Pro", Pango::WEIGHT_NORMAL};
     t1.set_color(0.9, 0.9, 0.0); // yellow
     t1.move(100.0, 50.0);
+    t1.get_text_height(area);
     area.add_shape(t1);
+    t1.get_text_width(area);
 
     Image img1{"fract0.png", Point{400.0, 300.0}, 100.0};
     area.add_shape(img1);
@@ -130,7 +133,6 @@ int main(int argc, char** argv) {
         }
     }
 
-    /*
     Function f1{std::cos, -10, 10, Point{0.5, 0.5}};
     f1.set_color(0.1, 0.5, 0.9);
     area.add_shape(f1);
@@ -172,9 +174,13 @@ int main(int argc, char** argv) {
     f10.set_color(0, 1, 0);
     area.add_shape(f10);
 
-    Axis xx{Axis::x, Point{300, 10}, 410, 40, "x axis"};
+    Axis xx{area, Axis::x, Point{200, 500}, 400, 40, "x axis"};
     xx.set_color(1, 1, 0.1);
     area.add_shape(xx);
+
+    Axis yy{area, Axis::y, Point{200, 500}, 400, 40, "y axis"};
+    yy.set_color(1, 1, 0.5);
+    area.add_shape(yy);
 
 
     win.add(area);

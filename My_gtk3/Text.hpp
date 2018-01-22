@@ -28,7 +28,9 @@ namespace My_gtk3 {
         Text(std::string msg, Point tl);
         Text(std::string msg, Point tl, std::string ffamily, Pango::Weight fweight);
         void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
+        void get_text_pixel_size(Gtk::Widget& gtkw, int& text_width, int& text_height) const;
     private:
+        Glib::RefPtr<Pango::Layout> create_layout(Gtk::Widget& gtkw) const;
         std::string message;
         std::string font_family;
         Pango::Weight font_weight;
