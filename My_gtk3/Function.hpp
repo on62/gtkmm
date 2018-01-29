@@ -27,7 +27,7 @@ namespace My_gtk3 {
         // the function parameters are not stored
 
     public:
-        Function(Fct f, double r1, double r2, Point oxy, int count = 100, double xscale = 25, double yscale = 25);
+        Function(Fct f, double r1, double r2, Point oxy, int count, double xscale, double yscale);
         void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
 
     private:

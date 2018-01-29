@@ -26,13 +26,15 @@ namespace My_gtk3 {
     class Axis : public Shape {
     public:
         enum Orientation { x, y, z };
-        Axis(Gtk::Widget& gtkw, Orientation d, Point xy, int len, int number_of_notches = 0, std::string lbl = "");
+        Axis(Orientation d, Point mid, double len, int num_of_notches = 0, std::string lbl = "");
         void draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const override;
         using Shape::set_color;
     private:
-        int length;
-        Text label;
-        Lines notches;
+        Orientation orientation_xyz;
+        Point middle;
+        double length;
+        int number_of_notches;
+        std::string label_text;
     };
 
 } // namespace My_gtk3

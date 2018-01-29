@@ -10,49 +10,65 @@
 
 namespace My_gtk3 {
 
-    Axis::Axis(Gtk::Widget& gtkw, Orientation d, Point xy, int len, int number_of_notches, std::string lbl)
-        : length{len}, label{lbl, xy,  "Source Code Pro", Pango::WEIGHT_NORMAL}
+    Axis::Axis(Orientation d, Point mid, double len, int num_of_notches, std::string lbl)
+        : orientation_xyz{d}, middle{mid}, length{len}, number_of_notches{num_of_notches}, label_text{lbl}
     {
-        if(length < 0) throw std::runtime_error("bad axis length");
+        if(length < 0)
+            throw std::runtime_error("bad axis length");
+    }
+
+
+    void Axis::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
+        double mx = middle.x * width;
+        double my = middle.y * height;
+
+        Text label{label_text, Point{0, 0},  "Source Code Pro", Pango::WEIGHT_NORMAL};
         int label_height, label_width;
-        label.get_text_pixel_size(gtkw, label_width, label_height);
-        switch(d) {
+        label.get_text_pixel_size(area, label_width, label_height);
+
+        Lines notches;
+        switch(orientation_xyz) {
         case Axis::x:
         {
-            notches.add(xy, Point{xy.x + length, xy.y});    // axis line
-            if(0 < number_of_notches) {                     // add notches
-                double dist = (double)length / (double)number_of_notches;
-                double x = xy.x + dist;
+            double axis_length = length * width;
+            double left_x = mx - axis_length / 2;
+            double right_x = left_x + axis_length;
+            notches.add(Point{left_x,my}, Point{right_x, my});                  // axis line
+            if(0 < number_of_notches) {                                         // add notches
+                double dist = (double)axis_length / (double)number_of_notches;
+                double notch_x = left_x + dist;
                 for(int i = 0; i < number_of_notches; ++i) {
-                    notches.add(Point{x, xy.y}, Point{x, xy.y - 5});
-                    x += dist;
+                    notches.add(Point{notch_x, my}, Point{notch_x, my - 5});
+                    notch_x += dist;
                 }
             }
-            // label under the line
-            label.move((double)(length - label_width), 0);
+            label.move((right_x - label_width), my);                            // label under the line
             break;
         }
         case Axis::y:
         {
-            notches.add(xy, Point{xy.x, xy.y - length});    // a y-axis goes up
-            if(0 < number_of_notches) {                     // add notches
-                double dist = (double)length / (double)number_of_notches;
-                double y = xy.y - dist;
+            double axis_length = length * height;
+            double top_y = my - axis_length / 2;
+            double bottom_y = top_y + axis_length;
+            notches.add(Point{mx, top_y}, Point{mx, bottom_y});                 // a y-axis goes up
+            if(0 < number_of_notches) {                                         // add notches
+                double dist = (double)axis_length / (double)number_of_notches;
+                double notch_y = top_y + dist;
                 for(int i = 0; i < number_of_notches; ++i) {
-                    notches.add(Point{xy.x, y}, Point{xy.x + 5, y});
-                    y -= dist;
+                    notches.add(Point{mx, notch_y}, Point{mx + 5, notch_y});
+                    notch_y += dist;
                 }
             }
-            // label at top
-            label.move( (double)(0 - label_width - 5), (double)(0 - length));
+            label.move((double)(mx - label_width - 5), top_y);                  // label at top
             break;
         }
         case Axis::z:
             throw std::runtime_error("z axis not implemented");
         }
-    }
 
-    void Axis::draw_specific(const Cairo::RefPtr<Cairo::Context>& cr, Gtk::DrawingArea& area, double width, double height) const {
+
+
+
         label.draw_specific(cr, area, width, height);       // use Axis color
         notches.draw_specific(cr, area, width, height);     // use Axis color
     }

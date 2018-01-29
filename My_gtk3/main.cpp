@@ -16,6 +16,7 @@
 #include <gtkmm/window.h>
 #include <cmath>
 #include <complex>
+#include <initializer_list>
 #include "MyArea.hpp"
 #include "Shape.hpp"
 #include "Lines.hpp"
@@ -32,6 +33,35 @@
 
 
 using namespace My_gtk3;
+
+/* factorial(n) ; n! */
+int fac(int n) {
+    int r = 1;
+    while(n > 1) {
+        r *= n;
+        --n;
+    }
+    return r;
+}
+
+/* The nth term of series */
+double term(double x, int n) {
+    return std::pow(x, n) / fac(n);
+}
+
+/**/
+double expe(double x, int n) {
+    double sum = 0;
+    for(int i = 0; i < n; ++i)
+        sum += term(x, i);
+    return sum;
+}
+
+int expN_number_of_terms = 10;
+double expN(double x) {
+    return expe(x, expN_number_of_terms);
+}
+
 
 /*
  *
@@ -164,9 +194,8 @@ int main(int argc, char** argv) {
     Function f8{std::exp, -10, 10, Point{0.2, 0.8}};
     f8.set_color(1, 0, 0);
     area.add_shape(f8);
-    */
 
-    Function f9{ [](double x) { return std::exp(x) + std::sin(x); }, -10, 10, Point{0.5, 0.8}};
+    Function f9{ [](double x) { return std::exp(x) + std::sin(x); }, -10, 10, Point{0.5, 0.8}, 100, 25, 25};
     f9.set_color(1, 0, 0);
     area.add_shape(f9);
 
@@ -174,13 +203,27 @@ int main(int argc, char** argv) {
     f10.set_color(0, 1, 0);
     area.add_shape(f10);
 
-    Axis xx{area, Axis::x, Point{200, 500}, 400, 40, "x axis"};
+    */
+
+    Axis xx{Axis::x, Point{0.5, 0.5}, 0.9, 50, "x axis"};
     xx.set_color(1, 1, 0.1);
     area.add_shape(xx);
 
-    Axis yy{area, Axis::y, Point{200, 500}, 400, 40, "y axis"};
+    Axis yy{Axis::y, Point{0.5, 0.5}, 0.9, 50, "y axis"};
     yy.set_color(1, 1, 0.5);
     area.add_shape(yy);
+
+    Function real_exp{std::exp, -10, 10, Point{0.5, 0.5}, 100, 50, 1};
+    real_exp.set_color(0.1, 0.5, 1.0);
+    area.add_shape(real_exp);
+
+    int maxN = 18;
+    for(int n = 0; n < maxN; ++n) {
+        expN_number_of_terms = n;
+        Function* fn = new Function{expN, -10, 10, Point{0.5, 0.5}, 100, 50, 1};
+        fn->set_color((double)expN_number_of_terms / (double)maxN, (double)(maxN - expN_number_of_terms) / (double)maxN, 0.1);
+        area.add_unnamed_shape(fn);
+    }
 
 
     win.add(area);

@@ -12,10 +12,11 @@ namespace My_gtk3 {
 
     // graph f(x) for x in [r1:r2) using count line segments with (0,0) displayed at oxy
     // x coordinates are scaled by xscale and y coordinates scaled by yscale
-    Function::Function(Fct f, double r1, double r2, Point oxy, int count, double xscale, double yscale) {
+    Function::Function(Fct f, double r1, double r2, Point oxy, int count, double xscale, double yscale)
+        : orig{oxy}
+    {
         if(r2-r1 <= 0) throw std::runtime_error("bad graphing range");
         if(count <= 0) throw std::runtime_error("non - positive graphing count");
-        orig = oxy;
         double dist = (r2-r1) / count;
         double r = r1;
         for(int i = 0; i < count; ++i) {
@@ -31,7 +32,7 @@ namespace My_gtk3 {
             return;
         double ox = orig.x * width;
         double oy = orig.y * height;
-        cr->set_line_width(3.0);
+        cr->set_line_width(1.0);
         cr->move_to(ox + point(0).x, oy - point(0).y);
         for(int i = 1; i < np; ++i )
             cr->line_to(ox + point(i).x, oy - point(i).y);
