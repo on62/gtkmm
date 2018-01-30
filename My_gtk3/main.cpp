@@ -35,8 +35,8 @@
 using namespace My_gtk3;
 
 /* factorial(n) ; n! */
-int fac(int n) {
-    int r = 1;
+double fac(int n) {
+    double r = 1;
     while(n > 1) {
         r *= n;
         --n;
@@ -205,19 +205,19 @@ int main(int argc, char** argv) {
 
     */
 
-    Axis xx{Axis::x, Point{0.5, 0.5}, 0.9, 50, "x axis"};
+    Axis xx{Axis::x, Point{0.5, 0.5}, 1.0, 50, "x axis"};
     xx.set_color(1, 1, 0.1);
     area.add_shape(xx);
 
-    Axis yy{Axis::y, Point{0.5, 0.5}, 0.9, 50, "y axis"};
+    Axis yy{Axis::y, Point{0.5, 0.5}, 1.0, 50, "y axis"};
     yy.set_color(1, 1, 0.5);
     area.add_shape(yy);
 
-    Function real_exp{std::exp, -10, 10, Point{0.5, 0.5}, 100, 50, 1};
+    Function real_exp{std::exp, -10, 10, Point{0.5, 0.5}, 100, 25, 25};
     real_exp.set_color(0.1, 0.5, 1.0);
     area.add_shape(real_exp);
 
-    int maxN = 18;
+    int maxN = 0;
     for(int n = 0; n < maxN; ++n) {
         expN_number_of_terms = n;
         Function* fn = new Function{expN, -10, 10, Point{0.5, 0.5}, 100, 50, 1};
